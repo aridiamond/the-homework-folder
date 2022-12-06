@@ -8,6 +8,7 @@ public class GenerateLevel : MonoBehaviour
     public int zPos = 50;
     public bool creatingSection = false;
     public int secNum;
+    public int generatedSections = 1;
 
     void Update()
     {
@@ -22,8 +23,16 @@ public class GenerateLevel : MonoBehaviour
     {
         secNum = Random.Range(0, section.Length);
         Instantiate(section[secNum], new Vector3(0,0,zPos), Quaternion.identity);
+        generatedSections += 1;
         zPos += 50;
-        yield return new WaitForSeconds(2);
+        if (generatedSections <= 10)
+        {
+          yield return new WaitForSeconds(2);
+        }
+        else
+        {
+          yield return new WaitForSeconds(4);
+        }
         creatingSection = false;
     }
 }
