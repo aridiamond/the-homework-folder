@@ -16,6 +16,9 @@ public class GenerateLevel : MonoBehaviour
       {
         creatingSection = true;
         StartCoroutine(GenerateSection());
+
+        //PlayerMove.Instance.transform.position.z takes z position of Player
+        //compare to zPos and change the wait commands
       }
     }
 
