@@ -9,6 +9,7 @@ public class GenerateLevel : MonoBehaviour
     public bool creatingSection = false;
     public int secNum;
     public int generatedSections = 1;
+    public float PlayerZPos => PlayerMove.Instance.transform.position.z;
 
     void Update()
     {
@@ -24,18 +25,15 @@ public class GenerateLevel : MonoBehaviour
 
     IEnumerator GenerateSection()
     {
-        secNum = Random.Range(0, section.Length);
-        Instantiate(section[secNum], new Vector3(0,0,zPos), Quaternion.identity);
-        generatedSections += 1;
-        zPos += 50;
-        if (generatedSections <= 10)
+        if (zPos <= (PlayerZPos + 300))
         {
-          yield return new WaitForSeconds(2);
+          secNum = Random.Range(0, section.Length);
+          Instantiate(section[secNum], new Vector3(0,0,zPos), Quaternion.identity);
+          generatedSections += 1;
+          zPos += 50;
+          yield return null;
+          creatingSection = false; 
         }
-        else
-        {
-          yield return new WaitForSeconds(4);
-        }
-        creatingSection = false;
+        
     }
 }
