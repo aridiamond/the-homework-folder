@@ -12,28 +12,12 @@ public class GenerateLevel : MonoBehaviour
 
     void Update()
     {
-      if (creatingSection == false)  
-      {
-        creatingSection = true;
-        StartCoroutine(GenerateSection());
-
-        //PlayerMove.Instance.transform.position.z takes z position of Player
-        //compare to zPos and change the wait commands
-      }
-    }
-
-    IEnumerator GenerateSection()
-    {
-          while(creatingSection)
-          {
-              if (zPos >= (PlayerZPos + 300))
-              {
-                secNum = Random.Range(0, section.Length);
-                Instantiate(section[secNum], new Vector3(0,0,zPos), Quaternion.identity);
-                zPos += 50;
-                creatingSection = false;
-              }
-          }
-          yield return null;  
+      
+        if (PlayerZPos >= (zPos - 300))
+        {
+          secNum = Random.Range(0, section.Length);
+          Instantiate(section[secNum], new Vector3(0,0,zPos), Quaternion.identity);
+          zPos += 50;
+        }
     }
 }
