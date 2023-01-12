@@ -7,7 +7,7 @@ using TMPro;
 public class PlayerDistance : MonoBehaviour
 {
     public GameObject disDisplay;
-    public float disActual => PlayerMove.Instance.transform.position.z;
+    public float DisActual => PlayerMove.Instance.transform.position.z;
     public float disRun = 0f;
     public float disSubtract = 0f;
     public bool startedPlaying = false;
@@ -21,7 +21,7 @@ public class PlayerDistance : MonoBehaviour
 
     void Update()
     {
-        disRun = disActual - disSubtract;
+        disRun = DisActual - disSubtract;
         if (startedPlaying == true && PlayerMove.Instance.canMoveAll == true)
         {
            scoreText.text = disRun.ToString();
@@ -31,7 +31,7 @@ public class PlayerDistance : MonoBehaviour
     IEnumerator PlayStart()
     {
         yield return new WaitForSeconds(2f);
-        disSubtract = disActual;
+        disSubtract = DisActual;
         startedPlaying = true;
     }
 }

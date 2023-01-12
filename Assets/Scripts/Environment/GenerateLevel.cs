@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class GenerateLevel : MonoBehaviour
 {
-    public GameObject[] section;
-    public int zPos = 50;
-    public bool creatingSection = false;
-    public int secNum;
-    public float PlayerZPos => PlayerMove.Instance.transform.position.z;
+    [SerializeField] GameObject[] section;
+    private int zPos = 50;
+    private int secNum;
+    private float PlayerZPos => PlayerMove.Instance.transform.position.z;
 
     void Update()
     {

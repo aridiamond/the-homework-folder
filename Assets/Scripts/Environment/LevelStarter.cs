@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class LevelStarter : MonoBehaviour
 {
-    public GameObject countDown3;
-    public GameObject countDown2;
-    public GameObject countDown1;
-    public GameObject countDownX;
-    public GameObject fadeIn;
+    [SerializeField] GameObject countDown3;
+    [SerializeField] GameObject countDown2;
+    [SerializeField] GameObject countDown1;
+    [SerializeField] GameObject countDownX;
+    [SerializeField] GameObject fadeIn;
 
 
     
@@ -28,6 +28,12 @@ public class LevelStarter : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         countDownX.SetActive(true);
         PlayerMove.canMoveLR = true;
+        yield return new WaitForSeconds(0.5f);
+        Destroy(fadeIn);
+        Destroy(countDown3);
+        Destroy(countDown2);
+        Destroy(countDown1);
+        Destroy(countDownX);
     }
 
 }
