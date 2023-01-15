@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float leftRightSpeed = 10f;
     [SerializeField] float jumpHeight = 750f;
     [SerializeField] Rigidbody rb;
+    [SerializeField] GameObject playerModel;
     [SerializeField] float moveSpeed = 15f;
     
     public static PlayerMove Instance;
@@ -86,9 +88,17 @@ public class PlayerMove : MonoBehaviour
     {
         if (other.collider.CompareTag("Obstacle"))
         {
+            playerModel.GetComponent<Animator>().Play("ded");
             rb.useGravity = false;
             rb.freezeRotation = false; 
             canMoveAll = false;
+            StartCoroutine(GameEnd());
         }
+    }
+
+    IEnumerator GameEnd()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("GameMenu");
     }
 }
