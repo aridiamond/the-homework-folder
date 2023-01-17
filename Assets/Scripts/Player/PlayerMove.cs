@@ -59,7 +59,7 @@ public class PlayerMove : MonoBehaviour
                     }
                 }
 
-                if (isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow)))
+                if (isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)))
                 {
                     rb.AddForce(Vector3.up * jumpHeight);
                 }
