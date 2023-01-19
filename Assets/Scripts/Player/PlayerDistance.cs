@@ -6,13 +6,21 @@ using TMPro;
 
 public class PlayerDistance : MonoBehaviour
 {
-    public GameObject disDisplay;
     public float DisActual => PlayerMove.Instance.transform.position.z;
     public float disRun = 0f;
     public float disSubtract = 0f;
     public bool startedPlaying = false;
     public TextMeshProUGUI scoreText;
-    
+    public static PlayerDistance Instance;
+
+    private void Awake() 
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        } else Destroy(this);
+    }
+
     void Start()
     {
         StartCoroutine(PlayStart());
@@ -21,10 +29,10 @@ public class PlayerDistance : MonoBehaviour
 
     void Update()
     {
-        disRun = DisActual - disSubtract;
         if (startedPlaying == true && PlayerMove.Instance.canMoveAll == true)
         {
-           scoreText.text = disRun.ToString();
+            disRun = DisActual - disSubtract;
+            scoreText.text = disRun.ToString();
         }
     }
 

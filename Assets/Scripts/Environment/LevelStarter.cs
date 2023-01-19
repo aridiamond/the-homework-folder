@@ -14,6 +14,7 @@ public class LevelStarter : MonoBehaviour
     
     void Start()
     {
+        Cursor.visible = false;
         StartCoroutine(CountSequence());
     }
 

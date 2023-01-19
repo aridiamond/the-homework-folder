@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] GameObject playerModel;
     [SerializeField] float moveSpeed = 15f;
+    [SerializeField] GameObject lvlEnd;
     
     public static PlayerMove Instance;
     static public bool canMoveLR = false;
@@ -88,17 +89,18 @@ public class PlayerMove : MonoBehaviour
     {
         if (other.collider.CompareTag("Obstacle"))
         {
+            canMoveAll = false;
             playerModel.GetComponent<Animator>().Play("ded");
             rb.useGravity = false;
             rb.freezeRotation = false; 
-            canMoveAll = false;
             StartCoroutine(GameEnd());
         }
     }
 
     IEnumerator GameEnd()
     {
-        yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene("GameMenu");
+        yield return new WaitForSeconds(1f);
+        Cursor.visible = true;
+        lvlEnd.SetActive(true);
     }
 }
