@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] GameObject playerModel;
     [SerializeField] float moveSpeed = 15f;
     [SerializeField] GameObject lvlEnd;
+    [SerializeField] AudioSource dedSfx;
+    [SerializeField] AudioSource bgm;
     
     public static PlayerMove Instance;
     static public bool canMoveLR = false;
@@ -95,10 +97,15 @@ public class PlayerMove : MonoBehaviour
             rb.freezeRotation = false; 
             StartCoroutine(GameEnd());
         }
+
+
     }
 
     IEnumerator GameEnd()
     {
+        bgm.volume = 0.5f;
+        yield return new WaitForSeconds(0.5f);
+        dedSfx.Play();
         yield return new WaitForSeconds(1f);
         Cursor.visible = true;
         lvlEnd.SetActive(true);

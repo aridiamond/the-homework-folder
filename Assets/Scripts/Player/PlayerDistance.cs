@@ -9,6 +9,7 @@ public class PlayerDistance : MonoBehaviour
     public float DisActual => PlayerMove.Instance.transform.position.z;
     public float disRun = 0f;
     public float disSubtract = 0f;
+    public float disAdded = 0f;
     public bool startedPlaying = false;
     public TextMeshProUGUI scoreText;
     public static PlayerDistance Instance;
@@ -31,7 +32,7 @@ public class PlayerDistance : MonoBehaviour
     {
         if (startedPlaying == true && PlayerMove.Instance.canMoveAll == true)
         {
-            disRun = DisActual - disSubtract;
+            disRun = DisActual - disSubtract + disAdded;
             scoreText.text = disRun.ToString();
         }
     }
@@ -42,4 +43,5 @@ public class PlayerDistance : MonoBehaviour
         disSubtract = DisActual;
         startedPlaying = true;
     }
+
 }

@@ -855,7 +855,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -246, y: 86}
-  m_SizeDelta: {x: 500, y: 100}
+  m_SizeDelta: {x: 1000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &537576476
 MonoBehaviour:
@@ -877,10 +877,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ari Manthey - coding, level design, music
+  m_text: 'Ari Manthey - coding, level design, music, SFX, models, textures
 
-    Tomasz "Yui" Wlodarczyk
-    - models, textures'
+    Tomasz
+    "Yui" Wlodarczyk - models, textures'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ad673de68772c1e44877fffa7ef03872, type: 2}
   m_sharedMaterial: {fileID: -7898936455656435730, guid: ad673de68772c1e44877fffa7ef03872, type: 2}
