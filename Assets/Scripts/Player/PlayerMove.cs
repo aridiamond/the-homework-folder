@@ -27,6 +27,11 @@ public class PlayerMove : MonoBehaviour
         } else Destroy(this);
     }
 
+    void Start()
+    {
+        canMoveAll = true;
+        canMoveLR = false;
+    }
 
     void Update()
     {
