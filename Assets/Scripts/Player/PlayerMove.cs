@@ -10,11 +10,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float leftRightSpeed = 10f;
     [SerializeField] float jumpHeight = 750f;
     [SerializeField] Rigidbody rb;
-    [SerializeField] GameObject playerModel;
     [SerializeField] float moveSpeed = 15f;
-    [SerializeField] GameObject lvlEnd;
-    [SerializeField] AudioSource dedSfx;
-    [SerializeField] AudioSource bgm;
+    [SerializeField] AudioSource jumpSfx;
     
     public static PlayerMove Instance;
     static public bool canMoveLR = false;
@@ -30,13 +27,7 @@ public class PlayerMove : MonoBehaviour
         } else Destroy(this);
     }
 
-    void Start()
-    {
-        // make sure these are true at start
-        rb.freezeRotation = true;
-        rb.useGravity = true;
-    }
-    
+
     void Update()
     {
        if (canMoveAll == true)
@@ -65,6 +56,7 @@ public class PlayerMove : MonoBehaviour
                 if (isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)))
                 {
                     rb.AddForce(Vector3.up * jumpHeight);
+                    jumpSfx.Play();
                 }
 
                 if (spdIncrActive == false)
@@ -87,27 +79,4 @@ public class PlayerMove : MonoBehaviour
         spdIncrActive = false;
     }
 
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.collider.CompareTag("Obstacle"))
-        {
-            canMoveAll = false;
-            playerModel.GetComponent<Animator>().Play("ded");
-            rb.useGravity = false;
-            rb.freezeRotation = false; 
-            StartCoroutine(GameEnd());
-        }
-
-
-    }
-
-    IEnumerator GameEnd()
-    {
-        bgm.volume = 0.5f;
-        yield return new WaitForSeconds(0.5f);
-        dedSfx.Play();
-        yield return new WaitForSeconds(1f);
-        Cursor.visible = true;
-        lvlEnd.SetActive(true);
-    }
 }

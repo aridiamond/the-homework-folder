@@ -2,11 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject mainPanel;
     [SerializeField] GameObject creditsPanel;
+    [SerializeField] TextMeshProUGUI hiScore;
+
+    void Start()
+    {
+        hiScore.text = PlayerPrefs.GetFloat("hiScore", 0f).ToString();
+    }
 
     public void GoToMain()
     {

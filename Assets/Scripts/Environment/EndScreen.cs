@@ -6,6 +6,7 @@ using TMPro;
 public class EndScreen : MonoBehaviour
 {
     public TextMeshProUGUI scoreEndText;
+    public TextMeshProUGUI hiScoreText;
     public float scoreFinal;
 
 
@@ -15,6 +16,15 @@ public class EndScreen : MonoBehaviour
         {
             scoreFinal = PlayerDistance.Instance.disRun;
             scoreEndText.text = scoreFinal.ToString();
+            if (scoreFinal > PlayerDistance.Instance.DisHi)
+            {
+                PlayerPrefs.SetFloat("hiScore", scoreFinal);
+                hiScoreText.text = scoreFinal.ToString();
+            }
+            else
+            {
+                hiScoreText.text = PlayerPrefs.GetFloat("hiScore").ToString();
+            }
         }
     }
 

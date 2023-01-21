@@ -10,6 +10,7 @@ public class PlayerDistance : MonoBehaviour
     public float disRun = 0f;
     public float disSubtract = 0f;
     public float disAdded = 0f;
+    public float DisHi => PlayerPrefs.GetFloat("hiScore", 0f);
     public bool startedPlaying = false;
     public TextMeshProUGUI scoreText;
     public static PlayerDistance Instance;
